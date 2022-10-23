@@ -7,7 +7,12 @@ const router = express.Router();
 const upload = multer({dest: "uploads/"});
 
 router.route("/")
-    .get(fileControllers.getALlFiles)
-    .post(upload.single("file"),fileControllers.receiveUserFile);
+    .post(upload.single("file"), fileControllers.receiveUserFile);
+
+router.route("/:filename")
+    .get(fileControllers.getFileData)
+
+router.route("/:filename/download")
+    .get(fileControllers.getFile)
 
 module.exports = router;
