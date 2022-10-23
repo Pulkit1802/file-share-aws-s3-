@@ -1,17 +1,20 @@
 import {useState} from "react";
 import {uploadFile} from "./fileApi";
+import "../css/main.css"
 
 export default () => {
 
     const [file, setFile] = useState()
     const [shareLink, setShareLink] = useState("");
+    const [uploadVisibility, setUploadVisibility] = useState(false)
 
-    function handleChange(event) {
-        setFile(event.target.files[0])
+    const handleChange = (e) => {
+        setFile(e.target.files[0]);
+        if(e.target.files) setUploadVisibility(prevState => !prevState);
     }
 
-    function handleSubmit(event) {
-        event.preventDefault()
+    const handleSubmit = (e) => {
+        e.preventDefault()
 
         const formData = new FormData();
         formData.append('file', file);
@@ -22,17 +25,45 @@ export default () => {
             console.log(res.data);
         })
 
+        setUploadVisibility(prevState => !prevState);
+
+    }
+
+    const handleClick = async () => {
+        document.getElementById("uploadFile").click();
+        setShareLink("");
     }
 
     return (
-        <div className="App">
-            <form onSubmit={handleSubmit}>
-                <h1>React File Upload</h1>
-                <input type="file" onChange={handleChange}/>
-                <button type="submit">Upload</button>
-            </form>
+        <div className="uploadContainer">
+            <h1>Share File Safely with anyone<br></br>anywhere</h1>
 
-            <div>{shareLink}</div>
+            <div className={"uploadForm"}>
+
+                <h2>{shareLink?
+                    "Share below link with your friend":
+                    "Upload a file to share"
+                }
+                </h2>
+
+                {shareLink?<h4>{shareLink}</h4>:<></>}
+
+                <form onSubmit={handleSubmit}>
+                    <input id={"uploadFile"} type="file" onChange={handleChange} required={true} />
+                    <button type={"submit"} className={"btn"} style={
+                        {
+                            display: (uploadVisibility)?"inline-block":"none"
+                        }
+                    }>Upload File</button>
+                </form>
+
+                {uploadVisibility ?
+                    <></> :
+                    <div className={"btn"} onClick={handleClick}>Select File</div>
+                }
+
+            </div>
+
 
         </div>
     );

@@ -6,6 +6,10 @@ export const uploadFile = async (formData) => {
     })
 }
 
-export const downLoadFile = async (fileName) => {
+export const GetFileData = async (fileName) => {
     return await axios.get(`http://localhost:8080/api/v1/files${fileName}`)
+}
+
+export const downLoadFile = async (fileName) => {
+    return await axios.get(`http://localhost:8080/api/v1/files${fileName}/download`)
 }

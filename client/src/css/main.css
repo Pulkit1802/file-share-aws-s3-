@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.uploadContainer {
+    height: 100vh;
+    padding: 4rem;
+    background: linear-gradient(110deg, #fdcd3b 40%, #D5E3FAFF 40%, #D5E3FAFF 60%, #fdcd3b 60%);
+}
+
+h1 {
+    text-transform: capitalize;
+    line-height: 145%;
+    word-spacing: 4px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    font-size: 3.4rem;
+    margin-bottom: -25vh;
+}
+
+.uploadForm {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40%;
+    transform: translate(-50%, -50%);
+    padding: 3.2rem 7.2rem;
+    background-color: #FAF7F0;
+    box-shadow: 2px 2px 8px #999;
+    border-radius: 18px;
+}
+
+.uploadForm>form>input {
+    display: none;
+}
+
+h2 {
+    font-weight: 400;
+    font-size: 2.2rem;
+    margin-bottom: 1.2rem;
+}
+
+h3 {
+    font-weight: 400;
+    font-size: 2rem;
+    margin-bottom: 0.4rem;
+}
+
+h4 {
+    margin-bottom: 1.2rem;
+    color: #282c34;
+}
+
+.card-data {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    width: 60%;
+    font-size: 1.2rem;
+}
+
+.btn {
+    display: inline-block;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 0.8rem 2.4rem;
+    background-color: #7978FF;
+    border-radius: 15px;
+    transition: all 0.4s;
+}
+
+.btn:hover {
+    color: #fff;
+    background-color: #6463fd;
+}
+
+button {
+    outline: none;
+    border: none;
+}
