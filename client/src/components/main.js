@@ -6,7 +6,7 @@ export default () => {
 
     const [file, setFile] = useState()
     const [shareLink, setShareLink] = useState("");
-    const [uploadVisibility, setUploadVisibility] = useState(false)
+    const [uploadVisibility, setUploadVisibility] = useState(false);
 
     const handleChange = (e) => {
         setFile(e.target.files[0]);
@@ -20,10 +20,14 @@ export default () => {
         formData.append('file', file);
         formData.append('fileName', file.name);
 
-        uploadFile(formData).then(res => {
-            setShareLink(res.data.shareLink)
-            console.log(res.data);
-        })
+        if(file.size/1000000 < 20) {
+            uploadFile(formData).then(res => {
+                setShareLink(res.data.shareLink)
+                console.log(res.data);
+            })
+        } else {
+            console.log("too big")
+        }
 
         setUploadVisibility(prevState => !prevState);
 
@@ -45,6 +49,8 @@ export default () => {
                     "Upload a file to share"
                 }
                 </h2>
+
+                {(file && uploadVisibility )?<h4>Upload {file.name}</h4>:console.log("go")}
 
                 {shareLink?<h4>{shareLink}</h4>:<></>}
 

@@ -21,7 +21,7 @@ export default (match) => {
                 <div>
                     {!fileInfo.downloaded ?
                         <div>
-                            <h2>File Will be deleted from server after download</h2>
+                            <h2>File Will be deleted 1 mins after clicking download</h2>
                             <div className={"file-info"}>
                                 <a className={"download-btn"} href={`http://localhost:8080/api/v1/files${fileName}/download`} download>Download</a>
                             </div>
@@ -32,7 +32,6 @@ export default (match) => {
                 </div>:
                 <h1>No such file exist</h1>
             }
-
         </div>
     )
 }

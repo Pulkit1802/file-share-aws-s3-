@@ -1,14 +1,30 @@
 const File = require("../models/fileModels")
+const fs = require("fs")
 const path = require("path");
 
-exports.getFile = (req, res) => {
+exports.getFile = async (req, res) => {
     const options = {
         root: path.join(__dirname+"/../uploads")
     }
-    res.status(200).sendFile(req.params.filename, options, (err) => {
-        if(err) console.log(err);
-        else console.log("file sent")
-    })
+
+    const file = await File.find({name: req.params.filename})
+
+    if(!file[0].downloaded) {
+        res.status(200).sendFile(req.params.filename, options, (err) => {
+            if(err) console.log(err);
+            else console.log("file sent")
+        })
+
+        file[0].downloaded = true;
+        file[0].save();
+
+
+        setTimeout(()=> fs.unlink(options.root + `${req.params.filename}`), 60000);
+
+
+
+    }
+
 }
 
 exports.getFileData = async (req, res) => {
