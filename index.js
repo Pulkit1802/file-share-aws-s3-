@@ -4,7 +4,7 @@ dotenv.config({path: "./config.env"});
 
 const app = require("./app")
 
-mongoose.connect(process.env.DATABASE_LOCAL, {}).then(() => console.log("DataBase Connected"))
+mongoose.connect(process.env.DATABASE, {}).then(() => console.log("DataBase Connected"))
 
 const port = process.env.PORT;
 
