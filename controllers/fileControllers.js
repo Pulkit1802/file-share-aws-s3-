@@ -31,9 +31,11 @@ exports.getFileData = async (req, res) => {
 
     const file = await File.find({name: req.params.filename})
 
-    res.status(200).json({
-        ...(file["0"])
-    })
+    if(file)
+        res.status(200).json({
+            ...(file["0"])
+        })
+    else res.status(404).json({})
 }
 
 exports.receiveUserFile = async (req, res) => {
